@@ -220,7 +220,7 @@
 
 				<div class="col col">
 					<!-- <h4 class="mb-3">Billing address</h4> -->
-					<form class="needs-validation" novalidate>
+					<form class="needs-validation" novalidate id="home_loan_form">
 						<div class="row g-3">
 							<div class="col-sm-6">
 								<label for="lamount" class="form-label">Loan Amount</label>
@@ -307,10 +307,8 @@
 							</div>
 
 							<div class="col-12">
-								<label for="insu_address2" class="form-label">Insurance Company Address
-									2 <span class="text-body-secondary">(Optional)</span></label>
-								<input type="text" class="form-control" id="insu_address2"
-									placeholder="Apartment or suite">
+								<label for="insu_city" class="form-label">City</label>
+								<input type="text" class="form-control" id="insu_city">
 							</div>
 
 							<div class="col-md-5">
@@ -394,7 +392,7 @@
 							</div>
 
 							<hr class="my-4">
-							<h4 class="mb-3">Personal Information</h4>
+							<h4 class="mb-3">Personal Information (Billing Address)</h4>
 
 							<div class="col-12">
 								<label for="address" class="form-label">Address</label>
@@ -405,11 +403,23 @@
 								</div>
 							</div>
 
-							<div class="col-12">
-								<label for="address2" class="form-label">Address 2 <span
+							<div class="col-sm-6">
+								<label for="address2"
+									class="form-label">Address 2 <span
 										class="text-body-secondary">(Optional)</span></label>
-								<input type="text" class="form-control" id="address2"
+								<input type="text" class="form-control"
+									id="address2"
 									placeholder="Apartment or suite">
+							</div>
+
+							<div class="col-sm-6">
+								<label for="city"
+									class="form-label">City </label>
+								<input type="text" class="form-control"
+									id="city" required>
+								<div class="invalid-feedback">
+									Please enter your city.
+								</div>
 							</div>
 
 							<div class="col-md-5">
@@ -504,6 +514,7 @@
 		</main>
 		<script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
 		<!-- JS ADD HERE -->
+		<script src="home_loan.js"></script>
 
 		<!-- JS END HERE -->
 

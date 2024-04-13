@@ -20,15 +20,13 @@
 
 
 $(document).ready(function () {
-    $("#signup-form").submit(function () {
-        let json = $('#signup-form').serialize();
+    $("#personal_loan_form").submit(function () {
+        let json = $('#personal_loan_form').serialize();
         console.log('json: ', json);
         console.log("=============================");
 
-        var firstName = $("input[id='firstName']").val();
-        var lastName = $("input[id='lastName']").val();
-        var email = $("input[id='email']").val();
-        var password = $("input[id='password']").val();
+        var lamount = $("input[id='lamount']").val();
+        var lmonth = $("input[id='lmonth']").val();
         var address = $("input[id='address']").val();
         var address2 = $("input[id='address2']").val();
         var city = $("input[id='city']").val();
@@ -48,10 +46,8 @@ $(document).ready(function () {
                 "Content-Type": "application/json"
             },
             "data": JSON.stringify({
-                "firstName": firstName,
-                "lastName": lastName,
-                "email": email,
-                "password": password,
+                "lamount": lamount,
+                "lmonth": lmonth,
                 "address": address,
                 "address2": address2,
                 "city": city,
@@ -67,7 +63,7 @@ $(document).ready(function () {
             // handle error
             console.error("Request failed: " + textStatus + ", " + errorThrown);
             if (jqXHR.status === 1){
-                alert("This email address already exists.");
+                alert("error");
             }
             
         });

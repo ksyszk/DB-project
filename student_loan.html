@@ -220,7 +220,7 @@
 
 				<div class="col col">
 					<!-- <h4 class="mb-3">Billing address</h4> -->
-					<form class="needs-validation" novalidate>
+					<form class="needs-validation" novalidate id="student_loan_form">
 						<div class="row g-3">
 							<div class="col-sm-6">
 								<label for="lamount" class="form-label">Loan Amount</label>
@@ -245,6 +245,9 @@
 									Please select a valid loan month.
 								</div>
 							</div>
+
+							<hr class="my-4">
+							<h4 class="mb-3">Educational Information</h4>
 
 							<div class="col-12">
 								<label for="eduinstitute" class="form-label">Educational Institute
@@ -282,7 +285,7 @@
 								<label for="graduationMonth" class="form-label">Graduation
 									Month:</label>
 								<select class="form-select" id="graduationMonth" required>
-									<option selected>Choose...</option>
+									<option value>Choose...</option>
 									<option value="1">January</option>
 									<option value="2">February</option>
 									<option value="3">March</option>
@@ -304,7 +307,7 @@
 							<div class="col-md-6">
 								<label for="graduationYear" class="form-label">Graduation Year:</label>
 								<select class="form-select" id="graduationYear" required>
-									<option selected>Choose...</option>
+									<option value>Choose...</option>
 									<option>2024</option>
 									<option>2025</option>
 									<option>2026</option>
@@ -317,6 +320,9 @@
 								</div>
 							</div>
 
+							<hr class="my-4">
+							<h4 class="mb-3">Personal Information (Billing Address)</h4>
+
 							<div class="col-12">
 								<label for="address" class="form-label">Address</label>
 								<input type="text" class="form-control" id="address"
@@ -326,11 +332,23 @@
 								</div>
 							</div>
 
-							<div class="col-12">
-								<label for="address2" class="form-label">Address 2 <span
+							<div class="col-sm-6">
+								<label for="address2"
+									class="form-label">Address 2 <span
 										class="text-body-secondary">(Optional)</span></label>
-								<input type="text" class="form-control" id="address2"
+								<input type="text" class="form-control"
+									id="address2"
 									placeholder="Apartment or suite">
+							</div>
+
+							<div class="col-sm-6">
+								<label for="city"
+									class="form-label">City </label>
+								<input type="text" class="form-control"
+									id="city" required>
+								<div class="invalid-feedback">
+									Please enter your city.
+								</div>
 							</div>
 
 							<div class="col-md-5">
@@ -425,6 +443,7 @@
 		</main>
 		<script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
 		<!-- JS ADD HERE -->
+		<script src="student_loan.js"></script>
 
 		<!-- JS END HERE -->
 
