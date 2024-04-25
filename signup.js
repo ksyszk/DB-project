@@ -39,6 +39,8 @@ $(document).ready(function () {
         console.log('lastName : ', lastName);
         console.log("=======333333============");
 
+        
+
 
         var settings = {
             "url": "http://43.130.62.214:8080/users/signup",
@@ -52,6 +54,7 @@ $(document).ready(function () {
                 "lastName": lastName,
                 "email": email,
                 "password": password,
+                "confirmPassword": password,
                 "address": address,
                 "address2": address2,
                 "city": city,
@@ -60,6 +63,9 @@ $(document).ready(function () {
                 "zip": zip
             }),
         };
+
+        console.log(settings);
+        console.log("=======4444444============");
 
         $.ajax(settings).done(function (response) {
             console.log(response);
@@ -71,6 +77,7 @@ $(document).ready(function () {
             }
             
         });
+        console.log("=======45555555555============");
 
 
     });

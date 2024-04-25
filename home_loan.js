@@ -29,6 +29,7 @@ $(document).ready(function () {
         var lmonth = $("input[id='lmonth']").val();
         var buildYear = $("input[id='buildYear']").val();
         var insu_acc_no = $("input[id='insu_acc_no']").val();
+        var year_insu_pre = $("input[id='year_insu_pre']").val();
         var insu_name = $("input[id='insu_name']").val();
         var insu_address = $("input[id='insu_address']").val();
         var insu_city = $("input[id='insu_city']").val();
