@@ -20,7 +20,7 @@
 
 
 $(document).ready(function () {
-    $("#checking-form").submit(function () {
+    $("#submit").click(function () {
         let json = $('#checking-form').serialize();
         console.log('json: ', json);
         console.log("=============================");
@@ -28,13 +28,14 @@ $(document).ready(function () {
         var address = $("input[id='address']").val();
         var address2 = $("input[id='address2']").val();
         var city = $("input[id='city']").val();
-        var country = $("input[id='country']").val();
-        var state = $("input[id='state']").val();
+        var country = $("select[id='country']").val();
+        var state = $("select[id='state']").val();
         var zip = $("input[id='zip']").val();
 
         var settings = {
             "url": "http://43.130.62.214:8080/account/test",
             "method": "POST",
+            // "async": false,
             "timeout": 0,
             "headers": {
                 "Content-Type": "application/json"
@@ -49,8 +50,18 @@ $(document).ready(function () {
             }),
         };
 
+        console.log(settings);
+        console.log("=======4444444============");
+
         $.ajax(settings).done(function (response) {
             console.log(response);
+
+            if(response.Status !== 0){
+                alert(response.ErrorMsg);
+            }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            // handle error
+            console.error("Request failed: " + textStatus + ", " + errorThrown);
         });
 
 
