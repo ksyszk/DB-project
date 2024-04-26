@@ -39,7 +39,6 @@ $(document).ready(function () {
         console.log('lastName : ', lastName);
         console.log("=======333333============");
 
-        
 
 
         var settings = {
@@ -80,8 +79,5 @@ $(document).ready(function () {
             // handle error
             console.error("Request failed: " + textStatus + ", " + errorThrown);
         });
-        console.log("=======45555555555============");
-
-
     });
 });

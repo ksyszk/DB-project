@@ -38,7 +38,8 @@ $(document).ready(function () {
             // "async": false,
             "timeout": 0,
             "headers": {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('user_token')
             },
             "data": JSON.stringify({
                 "address": address,

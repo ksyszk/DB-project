@@ -59,6 +59,7 @@ $(document).ready(function () {
                 "lmonth": lmonth,
                 "buildYear": buildYear,
                 "insu_acc_no": insu_acc_no,
+                "year_insu_pre": year_insu_pre,
                 "insu_name": insu_name,
                 "insu_address": insu_address,
                 "insu_city": insu_city,

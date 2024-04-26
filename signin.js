@@ -14,6 +14,10 @@ function test(){
             "url": "http://43.130.62.214:8080/users/login",
             "method": "POST",
             "timeout": 0,
+            "async": false,
+            "xhrFields": {
+                withCredentials: true
+            },
             "headers": {
                 "Content-Type": "application/json",
             },
@@ -29,10 +33,10 @@ function test(){
             if(response.Status !== 0){
                 alert(response.ErrorMsg);
             }else{
+                localStorage.setItem('user_token', response.userToken);
                 window.location.href = "checking-form.html";
             }
         });
 
-        console.log("=======444444444444============");
         return false;
 }

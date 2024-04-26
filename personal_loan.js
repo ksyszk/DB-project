@@ -26,12 +26,12 @@ $(document).ready(function () {
         console.log("=============================");
 
         var lamount = $("input[id='lamount']").val();
-        var lmonth = $("input[id='lmonth']").val();
+        var lmonth = $("select[id='lmonth']").val();
         var address = $("input[id='address']").val();
         var address2 = $("input[id='address2']").val();
         var city = $("input[id='city']").val();
-        var country = $("input[id='country']").val();
-        var state = $("input[id='state']").val();
+        var country = $("select[id='country']").val();
+        var state = $("select[id='state']").val();
         var zip = $("input[id='zip']").val();
         console.log('firstName : ', firstName);
         console.log('lastName : ', lastName);
@@ -39,7 +39,7 @@ $(document).ready(function () {
 
 
         var settings = {
-            "url": "http://43.130.62.214:8080/users/signup",
+            "url": "http://43.130.62.214:8080/account/test",
             "method": "POST",
             "timeout": 0,
             "headers": {
@@ -59,13 +59,13 @@ $(document).ready(function () {
 
         $.ajax(settings).done(function (response) {
             console.log(response);
+
+            if(response.Status !== 0){
+                alert(response.ErrorMsg);
+            }
         }).fail(function(jqXHR, textStatus, errorThrown) {
             // handle error
             console.error("Request failed: " + textStatus + ", " + errorThrown);
-            if (jqXHR.status === 1){
-                alert("error");
-            }
-            
         });
 
 
