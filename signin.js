@@ -1,4 +1,4 @@
-function test(){
+function signin(){
     let json = $('#signin_form').serialize();
         console.log('json: ', json);
         console.log("=============================");
@@ -28,12 +28,12 @@ function test(){
         };
 
         $.ajax(settings).done(function (response) {
-            console.log(response);
+            console.log(response.Data.userToken);
 
             if(response.Status !== 0){
                 alert(response.ErrorMsg);
             }else{
-                localStorage.setItem('user_token', response.userToken);
+                localStorage.setItem('user_token', response.Data.userToken);
                 window.location.href = "checking-form.html";
             }
         });

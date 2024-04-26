@@ -80,14 +80,28 @@ $(document).ready(function () {
         }).fail(function(jqXHR, textStatus, errorThrown) {
             // handle error
             console.error("Request failed: " + textStatus + ", " + errorThrown);
-            if (jqXHR.status === 1){
-                alert("error");
-            }
             
+            if(errorThrown === "Unauthorized"){
+                alert("You're not logged in. Please sign in !");
+                window.location.href = "signin.html";
+            }    
         });
 
 
     });
+});
+
+
+document.getElementById('logoutButton').addEventListener('click', function(e) {
+    e.preventDefault();  // Prevent the default anchor behavior
+
+    // Clear user session data 
+    localStorage.clear(); 
+
+    alert('You have been signed out.');
+    
+    // Redirect to the login page or homepage after logout
+    window.location.href = 'signin.html'; 
 });
 
 

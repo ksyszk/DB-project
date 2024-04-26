@@ -20,7 +20,7 @@
 
 
 $(document).ready(function () {
-    $("#personal_loan_form").submit(function () {
+    $("#submit").click(function () {
         let json = $('#personal_loan_form').serialize();
         console.log('json: ', json);
         console.log("=============================");
@@ -33,10 +33,6 @@ $(document).ready(function () {
         var country = $("select[id='country']").val();
         var state = $("select[id='state']").val();
         var zip = $("input[id='zip']").val();
-        console.log('firstName : ', firstName);
-        console.log('lastName : ', lastName);
-        console.log("=======333333============");
-
 
         var settings = {
             "url": "http://43.130.62.214:8080/account/test",
@@ -53,7 +49,8 @@ $(document).ready(function () {
                 "city": city,
                 "country": country,
                 "state": state,
-                "zip": zip
+                "zip": zip,
+                "userToken": localStorage.getItem('user_token')
             }),
         };
 
@@ -66,11 +63,30 @@ $(document).ready(function () {
         }).fail(function(jqXHR, textStatus, errorThrown) {
             // handle error
             console.error("Request failed: " + textStatus + ", " + errorThrown);
+            
+            if(errorThrown === "Unauthorized"){
+                alert("You're not logged in. Please sign in !");
+                window.location.href = "signin.html";
+            }
         });
 
 
     });
 });
+
+
+document.getElementById('logoutButton').addEventListener('click', function(e) {
+    e.preventDefault();  // Prevent the default anchor behavior
+
+    // Clear user session data 
+    localStorage.clear(); 
+
+    alert('You have been signed out.');
+
+    // Redirect to the login page or homepage after logout
+    window.location.href = 'signin.html'; 
+});
+
 
 
 // $(document).ready(function () {
