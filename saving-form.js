@@ -21,7 +21,7 @@
 
 $(document).ready(function () {
     $("#submit").click(function () {
-        let json = $('#checking-form').serialize();
+        let json = $('#saving-form').serialize();
         console.log('json: ', json);
         console.log("=============================");
 
@@ -33,7 +33,7 @@ $(document).ready(function () {
         var zip = $("input[id='zip']").val();
 
         var settings = {
-            "url": "http://43.130.62.214:8080/account/addchecking",
+            "url": "http://43.130.62.214:8080/account/addsaving",
             "method": "POST",
             // "async": false,
             "timeout": 0,
@@ -46,8 +46,7 @@ $(document).ready(function () {
                 "city": city,
                 "country": country,
                 "state": state,
-                "zip": zip,
-                "userToken": localStorage.getItem('user_token')
+                "zip": zip
             }),
         };
 
@@ -63,27 +62,10 @@ $(document).ready(function () {
         }).fail(function(jqXHR, textStatus, errorThrown) {
             // handle error
             console.error("Request failed: " + textStatus + ", " + errorThrown);
-
-            if(errorThrown === "Unauthorized"){
-                alert("You're not logged in. Please sign in !");
-                window.location.href = "signin.html";
-            }
         });
 
 
     });
-});
-
-document.getElementById('logoutButton').addEventListener('click', function(e) {
-    e.preventDefault();  // Prevent the default anchor behavior
-
-    // Clear user session data 
-    localStorage.clear(); 
-
-    alert('You have been signed out.');
-
-    // Redirect to the login page or homepage after logout
-    window.location.href = 'signin.html'; 
 });
 
 

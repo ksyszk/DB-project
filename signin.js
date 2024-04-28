@@ -34,7 +34,7 @@ function signin(){
                 alert(response.ErrorMsg);
             }else{
                 localStorage.setItem('user_token', response.Data.userToken);
-                window.location.href = "checking-form.html";
+                window.location.href = "user_center.html";
             }
         });
 
