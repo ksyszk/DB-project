@@ -1,3 +1,12 @@
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+const accountId = getQueryParam('account_id');
+const userId = getQueryParam('user_id');
+const accName = getQueryParam('acc_name');
+
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {
     'use strict'
@@ -21,69 +30,64 @@
 
 $(document).ready(function () {
     $("#submit").click(function () {
-        let json = $('#student_loan_form').serialize();
-        // console.log('json: ', json);
-        // console.log("=============================");
+        let json = $('#checking-form').serialize();
+        console.log('json: ', json);
+        console.log("=============================");
 
-        var lamount = $("input[id='lamount']").val();
-        var lmonth = $("select[id='lmonth']").val();
-        var eduinstitute = $("input[id='eduinstitute']").val();
-        var sid = $("input[id='sid']").val();
-        var grad_status = $("select[id='grad_status']").val();
-        var graduationMonth = $("select[id='graduationMonth']").val();
-        var graduationYear = $("select[id='graduationYear']").val();
         var address = $("input[id='address']").val();
         var address2 = $("input[id='address2']").val();
         var city = $("input[id='city']").val();
         var country = $("select[id='country']").val();
         var state = $("select[id='state']").val();
         var zip = $("input[id='zip']").val();
+        var amount = $("input[id='amount']").val();
+        var service_charge = $("input[id='service_charge']").val();
 
         var settings = {
-            "url": "http://43.130.62.214:8080/account/addstudentloan",
+            "url": "http://43.130.62.214:8080/admin/updateaccount",
             "method": "POST",
             "timeout": 0,
             "headers": {
                 "Content-Type": "application/json"
             },
             "data": JSON.stringify({
-                "lamount": lamount,
-                "lmonth": lmonth,
-                "eduinstitute": eduinstitute,
-                "sid": sid,
-                "grad_status": grad_status,
-                "graduationMonth": graduationMonth,
-                "graduationYear": graduationYear,
-                "address": address,
-                "address2": address2,
-                "city": city,
-                "country": country,
-                "state": state,
-                "zip": zip,
-                "userToken": localStorage.getItem('user_token')
+                "adminToken": localStorage.getItem('adminToken'),
+                "account_id": parseInt(accountId),
+                "update_data": {
+                    "account_id": parseInt(accountId),
+                    "account_type": "C",
+                    "amount": parseFloat(amount),
+                    "address": address,
+                    "apart": address2,
+                    "city": city,
+                    "country": country,
+                    "state": state,
+                    "zip": zip,
+                    "ctime": 0,
+                    "utime": 0,
+                    "user_id": parseInt(userId),
+                    "name": accName,
+                    "service_charge": parseFloat(service_charge),
+                }
             }),
         };
+
+        console.log(settings);
 
         $.ajax(settings).done(function (response) {
             console.log(response);
 
-            if(response.Status !== 0){
+            if (response.Status !== 0) {
                 alert(response.ErrorMsg);
             }
-        }).fail(function(jqXHR, textStatus, errorThrown) {
+        }).fail(function (jqXHR, textStatus, errorThrown) {
             // handle error
-            console.error("Request failed: " + textStatus + ", " + errorThrown); 
-            
-            if(errorThrown === "Unauthorized"){
-                alert("You're not logged in. Please sign in !");
-                window.location.href = "signin.html";
-            }
+            console.error("Request failed: " + textStatus + ", " + errorThrown);
         });
 
 
     });
 });
-
 
 document.getElementById('logoutButton').addEventListener('click', function(e) {
     e.preventDefault();  // Prevent the default anchor behavior
@@ -92,7 +96,7 @@ document.getElementById('logoutButton').addEventListener('click', function(e) {
     localStorage.clear(); 
 
     alert('You have been signed out.');
-
+    
     // Redirect to the login page or homepage after logout
-    window.location.href = 'signin.html'; 
+    window.location.href = 'admin_signin.html'; 
 });

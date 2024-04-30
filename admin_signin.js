@@ -7,11 +7,9 @@ function signin(){
         var password = $("input[id='floatingPassword']").val();
         console.log('email : ', email);
         console.log('password : ', password);
-        console.log("=======333333============");
-
 
         var settings = {
-            "url": "http://43.130.62.214:8080/users/login",
+            "url": "http://43.130.62.214:8080/admin/login",
             "method": "POST",
             "timeout": 0,
             "async": false,
@@ -28,13 +26,11 @@ function signin(){
         };
 
         $.ajax(settings).done(function (response) {
-            console.log(response.Data.userToken);
-
             if(response.Status !== 0){
                 alert(response.ErrorMsg);
             }else{
-                localStorage.setItem('user_token', response.Data.userToken);
-                window.location.href = "user_center.html";
+                localStorage.setItem('adminToken', response.Data.adminToken);
+                window.location.href = "dashboard.html";
             }
         }).fail(function (jqXHR, textStatus, errorThrown) {
             // handle error

@@ -42,13 +42,9 @@ $(document).ready(function () {
         var country = $("input[id='country']").val();
         var state = $("input[id='state']").val();
         var zip = $("input[id='zip']").val();
-        console.log('firstName : ', firstName);
-        console.log('lastName : ', lastName);
-        console.log("=======333333============");
-
 
         var settings = {
-            "url": "http://43.130.62.214:8080/users/signup",
+            "url": "http://43.130.62.214:8080/users/addhomeloan",
             "method": "POST",
             "timeout": 0,
             "headers": {

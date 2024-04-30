@@ -3,6 +3,9 @@ $(document).ready(function () {
         "url": "http://43.130.62.214:8080/account/usercenter",
         "method": "POST",
         "timeout": 0,
+        "headers": {
+            "Content-Type": "application/json"
+        },
         "data": JSON.stringify({
             "userToken": localStorage.getItem('user_token')
         }),

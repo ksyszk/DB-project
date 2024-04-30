@@ -35,7 +35,7 @@ $(document).ready(function () {
         var zip = $("input[id='zip']").val();
 
         var settings = {
-            "url": "http://43.130.62.214:8080/account/test",
+            "url": "http://43.130.62.214:8080/account/addloan",
             "method": "POST",
             "timeout": 0,
             "headers": {
