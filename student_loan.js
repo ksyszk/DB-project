@@ -50,7 +50,7 @@ $(document).ready(function () {
                 "lamount": lamount,
                 "lmonth": lmonth,
                 "eduinstitute": eduinstitute,
-                "sid": sid,
+                "studentid": sid,
                 "grad_status": grad_status,
                 "graduationMonth": graduationMonth,
                 "graduationYear": graduationYear,
@@ -70,6 +70,9 @@ $(document).ready(function () {
             if(response.Status !== 0){
                 alert(response.ErrorMsg);
             }
+
+            alert("You have created the account!");
+            window.location.href = "user_center.html";
         }).fail(function(jqXHR, textStatus, errorThrown) {
             // handle error
             console.error("Request failed: " + textStatus + ", " + errorThrown); 

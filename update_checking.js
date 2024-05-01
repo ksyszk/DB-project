@@ -80,6 +80,9 @@ $(document).ready(function () {
             if (response.Status !== 0) {
                 alert(response.ErrorMsg);
             }
+
+            alert("Update successfully!");
+            window.location.href = "dashboard.html";
         }).fail(function (jqXHR, textStatus, errorThrown) {
             // handle error
             console.error("Request failed: " + textStatus + ", " + errorThrown);
@@ -89,14 +92,14 @@ $(document).ready(function () {
     });
 });
 
-document.getElementById('logoutButton').addEventListener('click', function(e) {
+document.getElementById('logoutButton').addEventListener('click', function (e) {
     e.preventDefault();  // Prevent the default anchor behavior
 
     // Clear user session data 
-    localStorage.clear(); 
+    localStorage.clear();
 
     alert('You have been signed out.');
-    
+
     // Redirect to the login page or homepage after logout
-    window.location.href = 'admin_signin.html'; 
+    window.location.href = 'admin_signin.html';
 });

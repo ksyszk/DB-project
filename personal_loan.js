@@ -60,6 +60,9 @@ $(document).ready(function () {
             if(response.Status !== 0){
                 alert(response.ErrorMsg);
             }
+
+            alert("You have created the account!");
+            window.location.href = "user_center.html";
         }).fail(function(jqXHR, textStatus, errorThrown) {
             // handle error
             console.error("Request failed: " + textStatus + ", " + errorThrown);

@@ -22,8 +22,6 @@
 $(document).ready(function () {
     $("#home_loan_form").submit(function () {
         let json = $('#home_loan_form').serialize();
-        console.log('json: ', json);
-        console.log("=============================");
 
         var lamount = $("input[id='lamount']").val();
         var lmonth = $("input[id='lmonth']").val();
@@ -67,12 +65,20 @@ $(document).ready(function () {
                 "city": city,
                 "country": country,
                 "state": state,
-                "zip": zip
+                "zip": zip,
+                "userToken": localStorage.getItem('user_token')
             }),
         };
 
         $.ajax(settings).done(function (response) {
             console.log(response);
+
+            if(response.Status !== 0){
+                alert(response.ErrorMsg);
+            }
+
+            alert("You have created the account!");
+            window.location.href = "user_center.html";
         }).fail(function(jqXHR, textStatus, errorThrown) {
             // handle error
             console.error("Request failed: " + textStatus + ", " + errorThrown);

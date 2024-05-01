@@ -85,6 +85,9 @@ $(document).ready(function () {
             if (response.Status !== 0) {
                 alert(response.ErrorMsg);
             }
+
+            alert("Update successfully!");
+            window.location.href = "dashboard.html";
         }).fail(function (jqXHR, textStatus, errorThrown) {
             // handle error
             console.error("Request failed: " + textStatus + ", " + errorThrown);

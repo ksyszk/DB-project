@@ -80,7 +80,7 @@ $(document).ready(function () {
 
             const cardHtml = `
                         <div class="col">
-                            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-${account.id}.jpg');">
+                            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');">
                                 <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
                                     <h2 class="pt-1 mt-2 mb-4 fw-bold">${account.account_type === 'C' ? 'Checking' : account.account_type === 'S' ? 'Saving' : 'Loan'} Account</h4>
                                     <p>Account ID: ${account.id}</p>

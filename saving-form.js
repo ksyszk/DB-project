@@ -46,7 +46,8 @@ $(document).ready(function () {
                 "city": city,
                 "country": country,
                 "state": state,
-                "zip": zip
+                "zip": zip,
+                "userToken": localStorage.getItem('user_token')
             }),
         };
 
