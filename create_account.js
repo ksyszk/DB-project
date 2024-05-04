@@ -163,3 +163,14 @@ $(document).ready(function () {
     });
 });
 
+document.getElementById('logoutButton').addEventListener('click', function(e) {
+    e.preventDefault();  // Prevent the default anchor behavior
+
+    // Clear user session data 
+    localStorage.clear(); 
+
+    alert('You have been signed out.');
+
+    // Redirect to the login page or homepage after logout
+    window.location.href = 'signin.html'; 
+});

@@ -68,7 +68,7 @@ $(document).ready(function () {
                     "zip": zip,
                     "ctime": 0,
                     "utime": 0,
-                    "type": "P",
+                    "type": "L",
                     "user_id": parseInt(userId),
                     "name": accName,
                     "rate": parseFloat(rate),

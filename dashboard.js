@@ -178,6 +178,8 @@ $(document).ready(function () {
                     }
 
                     var detailsButton = `<button class="btn btn-primary" onclick="window.location.href='${buttonUrl}${account.account_id}&user_id=${userinfo.ID}&acc_name=${account.name}'">Edit</button>`;
+                    var deleteButton = `<button class="btn btn-primary" onclick="deleteAccount(${account.account_id})">Delete</button>`;
+
                     var row = `<tr>
                         <td>${account.account_id}</td>
                         <td>${account.name}</td>
@@ -186,6 +188,7 @@ $(document).ready(function () {
                         <td>${userinfo.FName}</td>
                         <td>${userinfo.LName}</td>
                         <td>${detailsButton}</td>
+                        <td>${deleteButton}</td>
                     </tr>`;
                     $('#accountsTable').append(row);
                 });
@@ -203,3 +206,39 @@ $(document).ready(function () {
     });
 });
 
+function deleteAccount(accountId) {
+    if (!confirm('Are you sure you want to delete this account?')) return;
+
+    console.log(accountId);
+
+    var settings = {
+        "url": "http://43.130.62.214:8080/admin/deleteaccount",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({
+            "adminToken": localStorage.getItem('adminToken'),
+            "account_id": accountId
+        }),
+    };
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+
+        if (response.Status !== 0) {
+            alert(response.ErrorMsg);
+        }
+
+        alert('Account deleted successfully');
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        // handle error
+        console.error("Request failed: " + textStatus + ", " + errorThrown);
+
+        if (errorThrown === "Unauthorized") {
+            alert("You're not logged in. Please sign in !");
+            window.location.href = "admin_signin.html";
+        }
+    });
+}

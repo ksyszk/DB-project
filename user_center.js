@@ -87,7 +87,7 @@ $(document).ready(function () {
                                     <p>Balance/Loan Amount: $${account.amount.toFixed(2)}</p>
                                     <ul class="d-flex list-unstyled mt-auto">
                                         <li class="d-flex align-items-center me-3">
-                                            <a href="./account_detail.html?account_id=${account.id}">Details</a>
+                                            <a href="./account_detail.html?account_id=${account.id}&account_type=${account.account_type}">Details</a>
                                         </li>
                                     </ul>
                                 </div>

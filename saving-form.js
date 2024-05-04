@@ -51,22 +51,39 @@ $(document).ready(function () {
             }),
         };
 
-        console.log(settings);
-        console.log("=======4444444============");
-
         $.ajax(settings).done(function (response) {
             console.log(response);
 
             if(response.Status !== 0){
                 alert(response.ErrorMsg);
             }
+
+            alert("You have created the account!");
+            window.location.href = "user_center.html";
         }).fail(function(jqXHR, textStatus, errorThrown) {
             // handle error
             console.error("Request failed: " + textStatus + ", " + errorThrown);
+
+            if (errorThrown === "Unauthorized") {
+                alert("You're not logged in. Please sign in !");
+                window.location.href = "signin.html";
+            }
         });
 
 
     });
+});
+
+document.getElementById('logoutButton').addEventListener('click', function(e) {
+    e.preventDefault();  // Prevent the default anchor behavior
+
+    // Clear user session data 
+    localStorage.clear(); 
+
+    alert('You have been signed out.');
+    
+    // Redirect to the login page or homepage after logout
+    window.location.href = 'signin.html'; 
 });
 
 

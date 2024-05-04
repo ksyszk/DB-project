@@ -21,38 +21,28 @@
 
 $(document).ready(function () {
     $("#submit").click(function () {
-        let json = $('#personal_loan_form').serialize();
-        console.log('json: ', json);
-        console.log("=============================");
+        let json = $('#transfer-form').serialize();
 
-        var lamount = $("input[id='lamount']").val();
-        var lmonth = $("select[id='lmonth']").val();
-        var address = $("input[id='address']").val();
-        var address2 = $("input[id='address2']").val();
-        var city = $("input[id='city']").val();
-        var country = $("select[id='country']").val();
-        var state = $("select[id='state']").val();
-        var zip = $("input[id='zip']").val();
+        var from_account_id = $("input[id='from_account_id']").val();
+        var to_account_id = $("input[id='to_account_id']").val();
+        var amount = $("input[id='amount']").val();
 
         var settings = {
-            "url": "http://43.130.62.214:8080/account/addloan",
+            "url": "http://43.130.62.214:8080/account/transaction",
             "method": "POST",
             "timeout": 0,
             "headers": {
                 "Content-Type": "application/json"
             },
             "data": JSON.stringify({
-                "lamount": lamount,
-                "lmonth": lmonth,
-                "address": address,
-                "address2": address2,
-                "city": city,
-                "country": country,
-                "state": state,
-                "zip": zip,
+                "from_account_id": parseInt(from_account_id),
+                "to_account_id": parseInt(to_account_id),
+                "amount": parseFloat(amount),
                 "userToken": localStorage.getItem('user_token')
             }),
         };
+
+        console.log(settings);
 
         $.ajax(settings).done(function (response) {
             console.log(response);
@@ -61,16 +51,16 @@ $(document).ready(function () {
                 alert(response.ErrorMsg);
             }
 
-            alert("You have created the account!");
+            alert("You have created an transaction!");
             window.location.href = "user_center.html";
         }).fail(function(jqXHR, textStatus, errorThrown) {
             // handle error
             console.error("Request failed: " + textStatus + ", " + errorThrown);
-            
-            if(errorThrown === "Unauthorized"){
-                alert("You're not logged in. Please sign in !");
-                window.location.href = "signin.html";
-            }
+
+            // if (errorThrown === "Unauthorized") {
+            //     alert("You're not logged in. Please sign in !");
+            //     window.location.href = "signin.html";
+            // }
         });
 
 

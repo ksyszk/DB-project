@@ -28,3 +28,22 @@
 a {
   color: rgb(149, 209, 220);
 }
+
+.nav-link.btn {
+  background-color: #007bff;  /* Blue background */
+  color: white;               /* White text */
+  padding: 10px 20px;         /* Padding for size */
+  margin-right: 10px;         /* Space between buttons */
+  border-radius: 5px;         /* Rounded corners */
+  text-decoration: none;      /* Remove underline */
+  height: 70px;
+}
+
+.nav-link.btn:hover {
+  background-color: #0056b3;  /* Darker blue on hover */
+}
+
+.nav-item {
+  display: flex;              /* Use flexbox for layout */
+  align-items: center;        /* Center-align items vertically */
+}
