@@ -84,8 +84,6 @@ $(document).ready(function () {
                     "country": country,
                     "state": state,
                     "zip": zip,
-                    "ctime": 0,
-                    "utime": 0,
                     "type": "H",
                     "user_id": parseInt(userId),
                     "name": accName,

@@ -31,8 +31,6 @@ const accName = getQueryParam('acc_name');
 $(document).ready(function () {
     $("#submit").click(function () {
         let json = $('#personal_loan_form').serialize();
-        console.log('json: ', json);
-        console.log("=============================");
 
         var amount = $("input[id='lamount']").val();
         var month = $("input[id='lmonth']").val();
@@ -66,8 +64,6 @@ $(document).ready(function () {
                     "country": country,
                     "state": state,
                     "zip": zip,
-                    "ctime": 0,
-                    "utime": 0,
                     "type": "L",
                     "user_id": parseInt(userId),
                     "name": accName,

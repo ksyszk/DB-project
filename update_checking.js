@@ -63,8 +63,6 @@ $(document).ready(function () {
                     "country": country,
                     "state": state,
                     "zip": zip,
-                    "ctime": 0,
-                    "utime": 0,
                     "user_id": parseInt(userId),
                     "name": accName,
                     "service_charge": parseFloat(service_charge),
