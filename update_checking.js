@@ -28,7 +28,54 @@ const accName = getQueryParam('acc_name');
 })()
 
 
+function init() {
+    apiUrl = 'http://43.130.62.214:8080/admin/getaccountbyaccountid';
+    dataPayload = {
+        "adminToken": localStorage.getItem('adminToken'), "account_id": parseInt(accountId)
+    };
+
+    var settings = {
+        "url": apiUrl,
+        "method": "POST",
+        "timeout": 0,
+        "data": JSON.stringify(dataPayload),
+        "contentType": "application/json",
+    };
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        $('#accountsTable').empty();
+        if (response.length === 0) {
+            alert('No results found.');
+        } else {
+            var account_info = response.Data.account_info.checking_account;
+
+            $("input[id='address']").val(account_info.street);
+            $("input[id='address2']").val(account_info.apart);
+            $("input[id='city']").val(account_info.city);
+            $("select[id='country']").val("United States");
+            $("select[id='state']").val(account_info.state);
+            $("input[id='zip']").val(account_info.zip);
+            $("input[id='amount']").val(account_info.amount);
+            $("input[id='service_charge']").val(account_info.service_charge);
+
+        }
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        // handle error
+        console.error("Request failed: " + textStatus + ", " + errorThrown);
+
+        if (errorThrown === "Unauthorized") {
+            alert("You're not logged in. Please sign in !");
+            window.location.href = "admin_signin.html";
+        }
+    });
+}
+
+
 $(document).ready(function () {
+
+    init();
+
     $("#submit").click(function () {
         let json = $('#checking-form').serialize();
         console.log('json: ', json);
@@ -44,16 +91,10 @@ $(document).ready(function () {
         var service_charge = $("input[id='service_charge']").val();
 
         var settings = {
-            "url": "http://43.130.62.214:8080/admin/updateaccount",
-            "method": "POST",
-            "timeout": 0,
-            "headers": {
+            "url": "http://43.130.62.214:8080/admin/updateaccount", "method": "POST", "timeout": 0, "headers": {
                 "Content-Type": "application/json"
-            },
-            "data": JSON.stringify({
-                "adminToken": localStorage.getItem('adminToken'),
-                "account_id": parseInt(accountId),
-                "update_data": {
+            }, "data": JSON.stringify({
+                "adminToken": localStorage.getItem('adminToken'), "account_id": parseInt(accountId), "update_data": {
                     "account_id": parseInt(accountId),
                     "account_type": "C",
                     "amount": parseFloat(amount),
@@ -77,7 +118,7 @@ $(document).ready(function () {
 
             if (response.Status !== 0) {
                 alert(response.ErrorMsg);
-            } else{
+            } else {
                 alert("Update successfully!");
                 window.location.href = "dashboard.html";
             }

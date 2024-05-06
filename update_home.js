@@ -28,7 +28,66 @@ const accName = getQueryParam('acc_name');
 })()
 
 
+
+function init() {
+    apiUrl = 'http://43.130.62.214:8080/admin/getaccountbyaccountid';
+    dataPayload = {
+        "adminToken": localStorage.getItem('adminToken'), "account_id": parseInt(accountId)
+    };
+
+    var settings = {
+        "url": apiUrl,
+        "method": "POST",
+        "timeout": 0,
+        "data": JSON.stringify(dataPayload),
+        "contentType": "application/json",
+    };
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        $('#accountsTable').empty();
+        if (response.length === 0) {
+            alert('No results found.');
+        } else {
+            var account_info = response.Data.account_info.home_loan_account;
+            console.log(account_info);
+            console.log(222223213123123);
+
+            $("input[id='address']").val(account_info.street);
+            $("input[id='address2']").val(account_info.apart);
+            $("input[id='city']").val(account_info.city);
+            $("select[id='country']").val("United States");
+            $("select[id='state']").val(account_info.state);
+            $("input[id='zip']").val(account_info.zip);
+            $("input[id='lamount']").val(account_info.amount);
+            $("input[id='lmonth']").val(account_info.month);
+            $("select[id='buildYear']").val(account_info.build_year);
+            $("input[id='insu_acc_no']").val(account_info.insur_acc_num);
+            $("input[id='year_insu_pre']").val(account_info.year_insur_prm);
+            $("input[id='insu_name']").val(account_info.insur_name);
+            $("input[id='insu_address']").val(account_info.insur_street);
+            $("input[id='insu_city']").val(account_info.insur_city);
+            $("select[id='insu_country']").val("United States");
+            $("select[id='insu_state']").val(account_info.insur_state);
+            $("input[id='insu_zip']").val(account_info.insur_zip);
+            $("input[id='rate']").val(account_info.rate);
+            $("input[id='payment']").val(account_info.payment);
+
+        }
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        // handle error
+        console.error("Request failed: " + textStatus + ", " + errorThrown);
+
+        if (errorThrown === "Unauthorized") {
+            alert("You're not logged in. Please sign in !");
+            window.location.href = "admin_signin.html";
+        }
+    });
+}
+
 $(document).ready(function () {
+    init();
+
     $("#submit").click(function () {
         let json = $('#home_loan_form').serialize();
         console.log('json: ', json);
@@ -36,14 +95,14 @@ $(document).ready(function () {
 
         var amount = $("input[id='lamount']").val();
         var month = $("input[id='lmonth']").val();
-        var buildYear = $("input[id='buildYear']").val();
+        var buildYear = $("select[id='buildYear']").val();
         var insu_acc_no = $("input[id='insu_acc_no']").val();
         var year_insu_pre = $("input[id='year_insu_pre']").val();
         var insu_name = $("input[id='insu_name']").val();
         var insu_address = $("input[id='insu_address']").val();
         var insu_city = $("input[id='insu_city']").val();
-        var insu_country = $("input[id='insu_country']").val();
-        var insu_state = $("input[id='insu_state']").val();
+        var insu_country = $("select[id='insu_country']").val();
+        var insu_state = $("select[id='insu_state']").val();
         var insu_zip = $("input[id='insu_zip']").val();
         var address = $("input[id='address']").val();
         var address2 = $("input[id='address2']").val();
@@ -70,14 +129,14 @@ $(document).ready(function () {
                     "amount": parseFloat(amount),
                     "month": month,
                     "build_year": buildYear,
-                    "insu_acc_no": insu_acc_no,
-                    "year_insu_pre": year_insu_pre,
-                    "insu_name": insu_name,
-                    "insu_address": insu_address,
-                    "insu_city": insu_city,
-                    "insu_country": insu_country,
-                    "insu_state": insu_state,
-                    "insu_zip": insu_zip,
+                    "insur_acc_no": insu_acc_no,
+                    "year_insur_prm": year_insu_pre,
+                    "insur_name": insu_name,
+                    "insur_street": insu_address,
+                    "insur_city": insu_city,
+                    "insur_country": insu_country,
+                    "insur_state": insu_state,
+                    "insur_zip": insu_zip,
                     "street": address,
                     "apart": address2,
                     "city": city,
@@ -92,8 +151,6 @@ $(document).ready(function () {
                 }
             }),
         };
-
-        console.log(settings);
 
         $.ajax(settings).done(function (response) {
             console.log(response);
