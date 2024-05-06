@@ -47,13 +47,14 @@ $(document).ready(function () {
         $.ajax(settings).done(function (response) {
             console.log(response);
 
-            if(response.Status !== 0){
+            if (response.Status !== 0) {
                 alert(response.ErrorMsg);
+            } else {
+                alert("You have created an transaction!");
+                window.location.href = "user_center.html";
             }
 
-            alert("You have created an transaction!");
-            window.location.href = "user_center.html";
-        }).fail(function(jqXHR, textStatus, errorThrown) {
+        }).fail(function (jqXHR, textStatus, errorThrown) {
             // handle error
             console.error("Request failed: " + textStatus + ", " + errorThrown);
 
@@ -68,14 +69,14 @@ $(document).ready(function () {
 });
 
 
-document.getElementById('logoutButton').addEventListener('click', function(e) {
+document.getElementById('logoutButton').addEventListener('click', function (e) {
     e.preventDefault();  // Prevent the default anchor behavior
 
     // Clear user session data 
-    localStorage.clear(); 
+    localStorage.clear();
 
     alert('You have been signed out.');
 
     // Redirect to the login page or homepage after logout
-    window.location.href = 'signin.html'; 
+    window.location.href = 'signin.html';
 });
