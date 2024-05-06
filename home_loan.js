@@ -49,8 +49,8 @@ $(document).ready(function () {
                 "Content-Type": "application/json"
             },
             "data": JSON.stringify({
-                "lamount": lamount,
-                "lmonth": lmonth,
+                "lamount": parseFloat(lamount),
+                "lmonth": parseInt(lmonth),
                 "buildYear": buildYear,
                 "insu_acc_no": insu_acc_no,
                 "year_insu_pre": year_insu_pre,

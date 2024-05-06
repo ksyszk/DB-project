@@ -42,8 +42,8 @@ $(document).ready(function () {
                 "Content-Type": "application/json"
             },
             "data": JSON.stringify({
-                "lamount": lamount,
-                "lmonth": lmonth,
+                "lamount": parseFloat(lamount),
+                "lmonth": parseInt(lmonth),
                 "address": address,
                 "address2": address2,
                 "city": city,

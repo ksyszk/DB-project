@@ -47,8 +47,8 @@ $(document).ready(function () {
                 "Content-Type": "application/json"
             },
             "data": JSON.stringify({
-                "lamount": lamount,
-                "lmonth": lmonth,
+                "lamount": parseFloat(lamount),
+                "lmonth": parseInt(lmonth),
                 "eduinstitute": eduinstitute,
                 "studentid": sid,
                 "grad_status": grad_status,
