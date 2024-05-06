@@ -27,8 +27,59 @@ const accName = getQueryParam('acc_name');
     })
 })()
 
+function init() {
+    apiUrl = 'http://43.130.62.214:8080/admin/getaccountbyaccountid';
+    dataPayload = {
+        "adminToken": localStorage.getItem('adminToken'), "account_id": parseInt(accountId)
+    };
+
+    var settings = {
+        "url": apiUrl,
+        "method": "POST",
+        "timeout": 0,
+        "data": JSON.stringify(dataPayload),
+        "contentType": "application/json",
+    };
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        $('#accountsTable').empty();
+        if (response.length === 0) {
+            alert('No results found.');
+        } else {
+            var account_info = response.Data.account_info.student_loan_account;
+
+            $("input[id='address']").val(account_info.street);
+            $("input[id='address2']").val(account_info.apart);
+            $("input[id='city']").val(account_info.city);
+            $("select[id='country']").val("United States");
+            $("select[id='state']").val(account_info.state);
+            $("input[id='zip']").val(account_info.zip);
+            $("input[id='lamount']").val(account_info.amount);
+            $("input[id='lmonth']").val(account_info.month);
+            $("input[id='eduinstitute']").val(account_info.edu_institute);
+            $("input[id='sid']").val(account_info.student_id);
+            $("select[id='grad_status']").val(account_info.grad_status);
+            $("select[id='graduationMonth']").val(account_info.expect_grad_month);
+            $("select[id='graduationYear']").val(account_info.expect_grad_year);
+            $("input[id='rate']").val(account_info.rate);
+            $("input[id='payment']").val(account_info.payment);
+
+        }
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        // handle error
+        console.error("Request failed: " + textStatus + ", " + errorThrown);
+
+        if (errorThrown === "Unauthorized") {
+            alert("You're not logged in. Please sign in !");
+            window.location.href = "admin_signin.html";
+        }
+    });
+}
 
 $(document).ready(function () {
+    init();
+
     $("#submit").click(function () {
         let json = $('#student_loan_form').serialize();
 
