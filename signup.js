@@ -73,6 +73,7 @@ $(document).ready(function () {
             if(response.Status !== 0){
                 alert(response.ErrorMsg);
             } else {
+                alert('Register successfully, Welcom to SAFE Bank !');
                 window.location.href = "signin.html";
             }
         }).fail(function(jqXHR, textStatus, errorThrown) {
